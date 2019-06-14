@@ -92,6 +92,22 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    def findSmallest(self):
+        while self.can_move_right():
+            if self.compare_item() == 1:
+                self.swap_item()
+            self.move_right()
+
+    def findEmptySpot(self):
+        while self.compare_item() != None:
+            self.move_left()
+
+    def replaceSmallest(self):
+        self.swap_item()
+        self.move_right()
+        self.swap_item()
+        self.move_right()
+
     def sort(self):
         """
         Sort the robot's list.
@@ -101,38 +117,11 @@ class SortingRobot:
         print(self.swap_item())
         print(self.move_right())
         print(self.compare_item())
-        
-        while self.can_move_right():
-            print('can move right')
-            if self.compare_item() == 1:
-                self.swap_item()
-                print('swapped item')
-            self.move_right()
-            print('moved right \n')
-        
-        while self.can_move_left():
-            self.move_left()
-        
-        self.swap_item()
-        self.move_right()
-        self.swap_item()
-        self.move_right()
 
         while self.can_move_right():
-            print('can move right')
-            if self.compare_item() == 1:
-                self.swap_item()
-                print('swapped item')
-            self.move_right()
-            print('moved right \n')
-        
-        while self.can_move_left():
-            self.move_left()
-        
-        self.swap_item()
-        self.move_right()
-        self.swap_item()
-        self.move_right()
+            self.findSmallest()
+            self.findEmptySpot()
+            self.replaceSmallest()
 
         pass
 
