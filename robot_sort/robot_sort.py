@@ -141,3 +141,11 @@ if __name__ == "__main__":
 
     robot.sort()
     print(robot._list)
+
+
+# Optimized testing complete, if based on values in test file:
+
+# small list time:  45
+# medium list time:  825
+# large list time:  12485
+# large varied list time:  12527
