@@ -19,5 +19,24 @@ This recursive algorithm calls upon itself, which means it has to resolve itself
 
 ## Exercise II
 
+To solve this problem, we could use a version of binary search to test various floors of the building. If the egg breaks on that floor, we can adjust the test floor down by half the height. If the egg does not break, we can raise the test floor by half the remaining height.
 
+When the algorithm finds the floor where the egg breaks, but does not break on the floor below it, it can return that as f.
 
+An example algorithm might look like:
+
+```
+broken_eggs(n):
+    current_floor = n/2
+
+    if drop_egg(current_floor) == true and drop_egg(current_floor-1) == false:
+        return current_floor
+
+    elif drop_egg(current_floor) == true:
+        current_floor = current_floor/2
+    
+    elif drop_egg(current_floor) == false:
+        current_floor = (n-current_floor)/2
+```
+
+Like Binary Search, the run time of this algorithm is O(log n) in worst case scenario, because it is splitting up the searchable area in half on each iteration.
