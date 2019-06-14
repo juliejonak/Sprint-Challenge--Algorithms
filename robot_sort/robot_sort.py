@@ -92,11 +92,42 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    def findSmallest(self):
+        while self.can_move_right():
+            if self.compare_item() == 1:
+                self.swap_item()
+            self.move_right()
+
+        if self.compare_item() == 1:
+                self.swap_item()
+                self.move_right()
+
+    def findEmptySpot(self):
+        while self.compare_item() != None:
+            self.move_left()
+
+    def replaceSmallest(self):
+        self.swap_item()
+        self.move_right()
+        self.swap_item()
+        self.move_right()
+
     def sort(self):
         """
         Sort the robot's list.
         """
         # Fill this out
+        self.swap_item()
+
+        while self.can_move_right():
+            self.findSmallest()
+            self.findEmptySpot()
+            self.replaceSmallest()
+
+        self.findSmallest()
+        self.findEmptySpot()
+        self.swap_item()
+
         pass
 
 
@@ -110,3 +141,18 @@ if __name__ == "__main__":
 
     robot.sort()
     print(robot._list)
+
+
+# Optimized testing complete, if based on values in test file:
+
+# small list time:  45
+# Test time: 110
+
+# medium list time:  825
+# Test time: 1948
+
+# large list time:  12485
+# Test time: 27513
+
+# large varied list time:  12527
+# Test time: 28308
