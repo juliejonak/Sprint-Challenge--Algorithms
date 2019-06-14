@@ -146,6 +146,13 @@ if __name__ == "__main__":
 # Optimized testing complete, if based on values in test file:
 
 # small list time:  45
+# Test time: 110
+
 # medium list time:  825
+# Test time: 1948
+
 # large list time:  12485
+# Test time: 27513
+
 # large varied list time:  12527
+# Test time: 28308
