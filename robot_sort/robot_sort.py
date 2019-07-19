@@ -91,13 +91,47 @@ class SortingRobot:
         Returns True if the robot's light is on and False otherwise.
         """
         return self._light == "ON"
+    
+    # Compares objects and moves larger object to the right
+    def findSmallest(self):
+        while self.can_move_right():
+            if self.compare_item() == 1:
+                self.swap_item()
+            self.move_right()
+        
+        if self.compare_item() == 1:
+            self.swap_item()
+            self.move_right()
+
+    # Finds an empty spot to begin comparing unsorted items again
+    def findEmptySpot(self):
+        while self.compare_item() != None:
+            self.move_left()
+
+    # Looping movement that allows Robot to replace smallest item with larger items, in one function to minimize individual function calls
+    def replaceSmallest(self):
+        self.swap_item()
+        self.move_right()
+        self.swap_item()
+        self.move_right()
 
     def sort(self):
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # Start by picking up the first item
+        self.swap_item()
+
+        # Searches down the line to the end
+        while self.can_move_right():
+            self.findSmallest()
+            self.findEmptySpot()
+            self.replaceSmallest()
+        
+        # One last loop to catch the final item
+        self.findSmallest()
+        self.findEmptySpot()
+        self.swap_item()
 
 
 if __name__ == "__main__":
