@@ -119,6 +119,19 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+        # Start by picking up the first item
+        self.swap_item()
+
+        # Searches down the line to the end
+        while self.can_move_right():
+            self.findSmallest()
+            self.findEmptySpot()
+            self.replaceSmallest()
+        
+        # One last loop to catch the final item
+        self.findSmallest()
+        self.findEmptySpot()
+        self.swap_item()
 
 
 if __name__ == "__main__":
